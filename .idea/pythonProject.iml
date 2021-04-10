@@ -7,6 +7,9 @@
       <sourceFolder url="file://$MODULE_DIR$/函数、模块和包/src/step2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/函数、模块和包/src/step3" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/函数、模块和包/src/step4" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/分支结构/src/step1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/分支结构/src/step2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/分支结构/src/step3" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="inheritedJdk" />
