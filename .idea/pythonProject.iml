@@ -13,6 +13,9 @@
       <sourceFolder url="file://$MODULE_DIR$/面向过程编程--函数设计/step1" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/面向过程编程--函数设计/step2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/面向过程编程--函数设计/step3" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/随堂测试--文件操作/step1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/随堂测试--文件操作/step2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/随堂测试--文件操作" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="inheritedJdk" />
