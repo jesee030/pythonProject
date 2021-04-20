@@ -13,9 +13,26 @@
       <sourceFolder url="file://$MODULE_DIR$/面向过程编程--函数设计/step1" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/面向过程编程--函数设计/step2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/面向过程编程--函数设计/step3" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/随堂测试--文件操作/step1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/随堂测试--文件操作/step2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/随堂测试--文件操作" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/随堂测试--读写CSV文件/step1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/随堂测试--读写CSV文件/step2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/随堂测试--读写CSV文件/step3" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/随堂测试--读写CSV文件" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (pythonProject)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+  <component name="PyDocumentationSettings">
+    <option name="renderExternalDocumentation" value="true" />
+  </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/随堂测试--读写CSV文件" />
+      </list>
+    </option>
   </component>
 </module>
