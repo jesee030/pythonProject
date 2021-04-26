@@ -5,12 +5,16 @@ def exist(board, word):
     :param word: 待搜索的单词: str
     :return: 返回是否搜索到，如果有，则返回 true，否则返回 false
     """
+    #为空返回
     if not board:
         return False
     m = len(board)
+    #字符行为0返回
     if m == 0:
         return False
+    #设置列->n
     n = len(board[0])
+    #初始化标记数组mark
     mark = [[0 for _ in range(n)] for _ in range(m)]
 
     for i in range(m):
