@@ -1,5 +1,5 @@
 import turtle
-import j
+
 t = turtle.Turtle()
 t.speed(0)
 i = 1

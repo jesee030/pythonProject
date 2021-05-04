@@ -1,4 +1,4 @@
-from turtleShow import *  # 导入模块turtle，*代表所有
+from turtle import *  # 导入模块turtle，*代表所有
 
 speed(0)  # 将绘制速度设置为0，这是最快的
 
