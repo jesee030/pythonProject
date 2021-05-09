@@ -16,4 +16,9 @@ class JySpider(scrapy.Spider):
 
     def parse_page(self, response):
     # 在此处添加代码
-
+        ret_time = response.xpath("//div[@class='recruit-list-left']//a/text()").extract()
+        ret = response.xpath("//div[@class='recruit-list-left']//span/text()").extract()
+        for i in range(0, len(ret_time)):
+            # 只打印选定日期的企业招聘信息
+            if ret[i].strip() == self.date:
+                print(ret_time[i])
