@@ -406,7 +406,7 @@ TP-LINK普联技术生产制造体系校园招聘
 
 ### 设置headers头伪装浏览器
 为什么要设置headers头信息？ 在请求网页爬取的时候，输出的text信息中会出现抱歉，无法访问等字眼，这就是禁止爬取，需要通过反爬机制去解决这个问题。headers是解决requests请求反爬的方法之一，相当于我们进去这个网页的服务器本身，假装自己本身在爬取数据。
-requests设置headers头实例
+#### requests设置headers头实例
 ```python
 import requests
 headers={
@@ -416,9 +416,9 @@ headers={
 res=requests.get("http://www.dianping.com/",headers=headers)
 print(res.text)
 ```
-Python多线程爬虫
+### Python多线程爬虫
 为什么需要多线程？ 凡事知其然也要知其所以然。在了解多线程的相关知识之前，我们先来看看为什么需要多线程。打个比方吧，你要搬家了，单线程就类似于请了一个搬家工人，他一个人负责打包、搬运、开车、卸货等一系列操作流程，这个工作效率可想而知是很慢的；而多线程就相当于请了四个搬家工人，甲打包完交给已搬运到车上，然后丙开车送往目的地，最后由丁来卸货。 由此可见多线程的好处就是高效、可以充分利用资源，坏处就是各个线程之间要相互协调，否则容易乱套（类似于一个和尚挑水喝、两个和尚抬水喝、三个和尚没水喝的窘境）。所以为了提高爬虫效率，我们在使用多线程时要格外注意多线程的管理问题。 我们可以使用队列（Queue）分页对目标进行爬取，这样目标有很多页的时候可以提高抓取数据效率。
-Python使用实现多线程爬虫实例
+#### Python使用实现多线程爬虫实例
 ```python
 from threading import Thread
 class MyThread(Thread):
@@ -434,7 +434,7 @@ if __name__ == '__main__':
     thread.join()
 ```
 
-Python使用使用队列（Queue）实现多线程爬虫实例
+### Python使用使用队列（Queue）实现多线程爬虫实例
 
 ```python
 
@@ -470,6 +470,7 @@ if __name__ == '__main__':
 
 ### 参考链接：
 https://www.cnblogs.com/songzhenhua/p/11824483.html
+
 https://blog.csdn.net/u013787595/article/details/49446291
 
 ### 编程要求
@@ -506,6 +507,224 @@ https://www.guet.edu.cn/jy/info/1031/10508.htm
 
 深圳市汇博数码电子科技有限公司来校参加双选会
 
+## reference:
+[Python3 爬虫（七）：多线程爬虫](https://wangxin1248.github.io/python/2018/09/python3-spider-7.html)
+
+[Python爬虫4.1 — threading(多线程)用法教程](https://blog.csdn.net/Zhihua_W/article/details/102516355)
+
+[python采用 多进程/多线程/协程 写爬虫以及性能对比，牛逼的分分钟就将一个网站爬下来! - 地球守卫者 - 博客园](https://www.cnblogs.com/huangguifeng/p/7632799.html)
+
+[【暂时Over】Python 从零开始爬虫（十）给爬虫加速：多线程，多进程 - SegmentFault 思否](https://segmentfault.com/a/1190000016216521)
+
+## 第6关：scrapy框架简单使用
+
+任务描述
+
+本关任务：编写一个使用Scrapy框架爬取桂林电子科技大学计算机与信息安全学院网站就业信息的小程序。
 
 
+相关知识
 
+Scrapy介绍
+
+Scrapy是一个适用爬取网站数据、提取结构性数据的应用程序框架，它可以应用在广泛领域：Scrapy 常应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。通常我们可以很简单的通过 Scrapy 框架实现一个爬虫，抓取指定网站的内容或图片。
+
+
+| 模块                               | 作用                                                  |
+| ---------------------------------- | ----------------------------------------------------- |
+| Scrapy Engine(引擎)                | 总指挥:负责数据和信号的在不同模块间的传递             |
+| Scheduler(调度器)                  | 一个队列，存放引擎发过来的request请求                 |
+| Downloader (下载器)                | 下载把引擎发过来的requests请求，并返回给引擎          |
+| Spider (爬虫)                      | 处理引擎发来来的response,提取数据，提取url,并交给引擎 |
+| Item Pipeline(管道)                | 处理引擎传过来的数据，比如存储                        |
+| DownloaderMiddlewares (下载中间件) | 可以自定义的下载扩展，比如设置代理                    |
+| SpiderMiddlewaresSpider(中间件)    | 可以自定义requests请求和进行response过滤              |
+
+
+##### pip安装
+
+pip install Scrapy -i http://pypi.douban.com/simple –trusted-host=pypi.douban.com
+
+使用豆瓣源下载，速度会快些
+
+1.创建一个scrapy项目
+
+scrapy startproject <项目名字>
+
+2.生成一个爬虫
+
+scrapy genspider <爬虫名字> <爬虫范围>
+
+示例：
+
+scrapy genspider itcast itcast.cn
+
+3.提取数据
+
+完善spider,使用xpath等方法
+
+4.保存数据
+
+pipeline中保存数据
+
+5.启动爬虫
+
+scrapy crawl <爬虫名字>
+
+
+Scrapy目录结构
+```python
+
+.
+├── mySpider
+│   ├── init.py
+│   ├── items.py    自己预计需要爬取的内容
+│   ├── middlewares.py    自定义中间件的文
+│   ├── pipelines.py    管道，保存数据
+│   ├── pycache
+│   │   ├── init.cpython-37.pyc
+│   │   ├── pipelines.cpython-37.pyc
+│   │   └── settings.cpython-37.pyc
+│   ├── settings.py    设置文件， UA，启动管道
+│   └── spiders    自己定义的spider的文件夹
+│       ├── init.py
+│       ├── itcast.py    定义spider的文件
+│       └── pycache
+│           ├── init.cpython-37.pyc
+│           └── itcast.cpython-37.pyc
+└── scrapy.cfg        项目的配置文件
+
+```
+
+##### itcast.py——完善spider，在例子中为itcast.py
+```python
+class ItcastSpider (scrapy. Spider): -> 自定义spider类， 继承自scrapy.spider
+        name = ‘itcast’   # 爬虫名字<爬虫启动时候使用: scrapy crawl itcast>
+        allowed_ domains = [‘itcast.cn’]      # 允许爬取的范围,防止爬虫爬到了别的网站
+        start_ _urls = [‘http://www. itcast. cn/ channel/teacher . shtml ‘]        # 开始爬取的地址
+
+    def parse(self, response):  # 数据提起方法，接收下载中间件传过来的response
+        names = response . xpath("//div [@class='tea_ con']//li/div/h3/text()")
+        print(names)     # 返回包含选择器的列表
+```
+    
+从选择器中提取字符串:
+
+    extract() 返回一个包含有字符串数据的列表
+    
+    extract_frst() 返回列表中的第一个字符串
+    
+
+注意:
+
+    spider中的parse方法名不能修改
+    
+    需要爬取的ur|地址必须要属于allow_ domain下的连接
+    
+    respone.xpath()返回的是一 个含有selector对象的列表
+    
+##### itcast.py——spider的数据传到pipeline
+```python
+ def parse(self, response) :
+        teachers = response . xpath(“//div [@class=’tea_ con’]//li”)        # xpath分组提取
+    for t in teachers:
+        name = t.xpath(“. /div/h3/text()”) .extract_ first()
+        position = t.xpath(“./div/h4/text()”). extract_ first()
+        profile = t. xpath(“ ./div/p/text()”) .extract_ first()
+        item = dict(
+        name= name ,
+        position = position,
+        profiel = profile
+        )
+        yield item     # yield 就可以了
+```
+   
+
+为什么要使用yield?
+
+让整个函数变成一个生成器，变成generator(生成器)有什么好处?
+
+每次遍历的时候挨个读到内存中，不会导致内存的占用量瞬间变高
+
+pipelines.py——使用pipeline
+
+使用pipeline
+```python
+ import json
+        class MyspiderPipeline (object):
+            def process_ item(self, item， spider):     # 实现存储方法
+                with open( ‘ temp.txt’ ,’a’) as f:
+                json. dump(item,f ,ensure_ ascii=False, indent=2)
+```
+   
+完成pipeline代码后，需要在setting中设置开启
+
+从pipeline的字典形式可以看出来，pipeline可以有多个， 而且确实pipeline能够定义多个
+
+为什么需要多个pipeline:
+
+    可能会有多个spider,不同的pipeline处理不同的item的内容
+    
+    一个spider的内容可能要做不同的操作，比如存入不同的数据库中
+    
+注意:
+
+    pipeline的权重越小优先级越高
+    
+    pipeline中process_ ltem方法名不能修改为其他的名称
+    
+##### settings.py——设置使用管道
+    # Configure item pipelines
+    # See http://scrapy。readthedocs。org/ en/latest/topics/i tem-pi peline . html
+    ITEM_ PIPELINES = {
+    ‘myspider . pipelines . MyspiderPipeline’: 300,     # ‘pipeline的位置’:权重
+    }
+##### setting.py——设置日志显示级别，设置日志文件
+
+同学们自己使用scrapy框架的时候一定要在setting.py中加上LOG_LEVEL = “WARNING”，不然scrapy会输出很多默认信息。实训中的setting.py不用添加。
+
+    添加LOG_LEVEL，只显示WARNING级别以上的日志信息
+    LOG_LEVEL = “WARNING”
+    添加LOG_FILE，终端不会显示信息，将记录在设置的日志文件中
+    LOG_FILE = “./log.log”
+
+想要更多了解scarpy框架，可参考：
+
+https://www.cnblogs.com/zhaopanpan/articles/9339784.html
+#### 编程要求
+爬取桂电招聘页面的招聘信息。
+
+页面地址：https://www.guet.edu.cn/jy/zhaopin.jsp?a165823t=475&a165823p=1&a165823c=10&urltype=tree.TreeTempUrl&wbtreeid=1003
+
+#### 测试说明
+
+平台会对你编写的代码进行测试：
+```
+测试输入：2020-03-02；
+预期输出：
+北部湾财产保险股份有限公司信息技术岗位人员招聘启事
+步步高教育电子2020春季校园招聘
+天津飞腾信息技术有限公司2020招聘简章
+美国安费诺电子装配（厦门）有限公司招聘简章
+实力央企——中国一冶  诚邀您共建美丽中国
+中铁广州工程局集团第二工程有限公司2020年校园招聘公告
+中国振华电子集团贵州振华风光半导体有限公司招聘简章
+嘉瑞能源科技（深圳）有限公司招聘简章
+教育部启动“24365校园联合招聘服务” 助力高校毕业生网上求职
+
+测试输入：2020-02-28；
+预期输出：
+深圳海云安网络安全技术有限公司招聘信息
+德国M+P国际公司北京代表处2020年春季招聘
+中国十五冶2020年校园招聘简章
+中冶赛迪上海工程技术有限公司湛江分公司2020招聘简章
+摩比集团2020届校园招聘简章
+深圳市伊力科电源有限公司2020招聘简章
+梦想即至 |科华恒盛2020届校园招聘简章
+TP-LINK普联技术生产制造体系校园招聘
+长安汽车2020春季校园招聘驭爱前行
+广西翅冀钢铁有限公司招聘简章
+广州朗国科技2020春季校招简章
+上海特金信息科技招聘信息
+光宝电源科技(东莞)有限公司招聘简章
+```
